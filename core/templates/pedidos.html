@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load carrito %}
+
+<div class="container">
+   <div class="bpedido rounded p-4 m-4">
+        <p class="display-4 pl-4 ml-4">Tus pedidos</p>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Orden</th>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Fecha</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for pedido in pedidos %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img style="height: 80px;" class="rounded-circle" src="{{pedido.productoo.imagen.url}}" alt=""></td>
+                    <td>{{pedido.producto.name}}</td>
+                    <td>{{pedido.fecha}}</td>
+                    <td>{{pedido.precio|moneda}}</td>
+                    <td>{{pedido.cantidad}}</td>
+                    <td>{{pedido.cantidad|multiply:pedido.precio|moneda}}</td>
+                    {% if pedido.estado %}
+                    <td><small class="badge badge-success">Completado</small></td>
+                    {%else%}
+                    <td><small class="badge badge-warning">Pendiente</small></td>
+                    {% endif %}
+                </tr>
+
+                {% endfor %}
+               
+            </tbody>
+
+        </table>
+       
+   </div>
+</div>
+
+
+
+
+
+{% endblock %}

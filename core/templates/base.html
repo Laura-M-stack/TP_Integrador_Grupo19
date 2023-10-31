@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+  <title>Free Market</title>
+
+  <style>
+    nav{
+      background-color: rgb(0, 94, 255);
+    }
+    .one-edge-shadow {
+              box-shadow: 0 8px 2px -2px rgb(155, 186, 250);
+}
+.display-8{
+  font-weight: 200;
+  font-size: 30px;
+  color: teal -200;
+}
+  </style>
+</head>
+
+<body>
+  <!-- navbar -->
+
+<nav class="one-edge-shadow
+  navbar navbar-light
+  sticky-top navbar 
+  navbar-expand-lg
+  text-white">
+    <a class="navbar-brand ms-3 text-dark " href="/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <img src="https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-svg-png-icon-download-28.png" style="width:50px;height:50px; color:text-light;">Free Marketplace</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/tienda">Tienda <span 
+        </li>
+
+          </ul>
+
+
+
+
+      <ul class=" navbar-nav my-2 my-lg-0">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/carrito">Carrito
+            <span class="badge badge-success">{{request.session.carrito.keys|length}}</span>
+            
+        </li>
+
+        {% if request.session.cliente %}
+        
+        <li class="nav-item active ">
+          <a class="nav-link" href="/pedidos">Pedidos<span 
+        </li>
+        <li class="nav-item active ">
+          <a class="nav-link" href="/salir">Salir<span 
+        </li>
+        {% else %}
+       
+        <li class="nav-item active">
+          <a class="nav-link" href="/registrarse">Registrarse<span 
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/acceder">Acceder<span 
+        </li>
+        {% endif %}
+
+
+      </ul>
+
+
+    </div>
+  </nav>
+  
+  {% block content %}{% endblock %}
+
+  <!-- JavaScript  -->
+ 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+ 
+</body>
+
+</html>

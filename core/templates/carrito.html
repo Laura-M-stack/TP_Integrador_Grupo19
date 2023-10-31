@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load carrito %}
+
+<div class="container">
+   <div class="border rounded p-4 m-4">
+        <p class="display-4 pl-4 ml-4 btn btn-success rounded-pill">Tu carrito</p>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Orden</th>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for producto in productos %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img style="height: 80px;" class="rounded-circle" src="{{producto.image.url}}" alt=""></td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio|moneda}}</td>
+                    <td>{{producto|carrito_cantidad:request.session.carrito}}</td>
+                    <td>{{producto|precio_total:request.session.carrito|moneda}}</td>
+                </tr>
+
+                {% endfor %}
+               
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <th colspan="4"></th>
+                    <th class="" colspan="">Total</th>
+                    <th>{{productos|total_carrito_precio:request.session.carrito|moneda}}</th>
+                </tr>
+            </tfoot>
+        </table>
+        <hr>
+        <div class="m-3 p-3">
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-success border rounded  col-lg-3 float-right">Comprar</a>
+        </div>
+   </div>
+</div>
+
+
+ 
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+              Confirmá tu compra
+          </h5>
+          <hr>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="m-2 p-3">
+            <form action="/check-out" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="">Dirección</label>
+                  <input type="text" name="direccion" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
+                </div>
+                <div class="form-group">
+                    <label for="">Teléfono</label>
+                    <input type="text" name="telefono" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  </div>
+
+                  <input type="submit" class="btn float-right btn-outline-success col-lg-6" value="Comprar">
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
