@@ -1,6 +1,5 @@
 # TP_Integrador_Grupo19
 
-# TP_Integrador_Grupo19
 Trabajo Práctico Integrador, Grupo 19.  Codo a Codo. Comisión 23655.
 
 El PIG deberá ser un sitio web con temática a elección, orientado a la gestión y que cumpla con los siguientes puntos (revisar https://djangosites.com/ en caso de necesitar inspiración):
